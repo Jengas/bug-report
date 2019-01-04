@@ -41,7 +41,7 @@ function updateSyntax() {
             steps = steps + ' - ' + step;
         }
     }
-    if (desc && expected && actual && client && system && steps) {
+    if (desc && expected && actual && steps) {
         bugtext = '!submit ' + desc + ' | Шаги для воспроизведения:' + steps + ' Ожидаемый результат: ' + expected + ' Реальный результат: ' + actual;
     }
     $('#syntax').text(bugtext);
