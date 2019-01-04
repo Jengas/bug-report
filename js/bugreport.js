@@ -42,7 +42,7 @@ function updateSyntax() {
         }
     }
     if (desc && expected && actual && steps) {
-        bugtext = '!submit ' + desc + ' | Шаги для воспроизведения:' + steps + ' Ожидаемый результат: ' + expected + ' Реальный результат: ' + actual;
+        bugtext = '!submit ' + desc + ' | Steps to reproduce:' + steps + ' Expected result: ' + expected + ' Actual result: ' + actual;
     }
     $('#syntax').text(bugtext);
     $('#lrg-rep').toggleClass('hidden', bugtext.length < 1400);
