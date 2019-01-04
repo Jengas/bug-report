@@ -1,38 +1,28 @@
 var field_data = {
     desc: {
-        fn: "Short Description",
-        ht: "Describe your bug in a single sentence",
+        fn: "Короткое описание",
+        ht: "Опишите свою ошибку в одном предложении",
         al: "title"
     },
     exp: {
-        fn: "Expected Result",
-        ht: "What *should* happen when following the steps? (i.e. if the bug didn't occur)",
+        fn: "Ожидаемый результат",
+        ht: "Что *должно* произойти при выполнении этих действий? (т.е. если ошибка не возникает)",
         al: "expected"
     },
     act: {
-        fn: "Actual Result",
-        ht: "What *actually* happens when following the steps?",
+        fn: "Реальный результат",
+        ht: "Что *на самом деле* происходит при выполнении шагов?",
         al: "actual"
-    },
-    client: {
-        fn: "Client Version",
-        ht: "The version/build of Discord you're using, e.g. TestFlight 1.9.2",
-        al: "cs"
-    },
-    sys: {
-        fn: "System Settings",
-        ht: "Your system settings including device model (if on mobile), OS, and version, e.g. iPhone 8, iOS 11.0.3",
-        al: "ss"
     }
 };
 
 var mm = {
     dark: {
-        d: "Light Mode",
+        d: "Светлый режим",
         m: "sun"
     },
     light: {
-        d: "Dark Mode",
+        d: "Тёмный режим",
         m: "moon"
     }
 };
@@ -52,15 +42,14 @@ function updateSyntax() {
         }
     }
     if (desc && expected && actual && client && system && steps) {
-        bugtext = '!submit ' + desc + ' | Steps to Reproduce:' + steps + ' Expected Result: ' + expected + ' Actual Result: ' + actual + ' Client Settings: ' + client + ' System Settings: ' + system;
+        bugtext = '!submit ' + desc + ' | Шаги для воспроизведения:' + steps + ' Ожидаемый результат: ' + expected + ' Реальный результат: ' + actual;
     }
     $('#syntax').text(bugtext);
     $('#lrg-rep').toggleClass('hidden', bugtext.length < 1400);
 }
-
 function addStep() {
     window.sct++;
-    var stxt = '<div class="input-group" id="s' + window.sct + '-grp"><span class="input-group-label">Step ' + window.sct + '</span><input type="text" class="input-group-field" id="s' + window.sct + '-field"></div>';
+    var stxt = '<div class="input-group" id="s' + window.sct + '-grp"><span class="input-group-label">Шаг ' + window.sct + '</span><input type="text" class="input-group-field" id="s' + window.sct + '-field"></div>';
     $('#steps-fs').append(stxt);
 }
 
@@ -110,7 +99,7 @@ function updateField(event) {
     $('#del-btn').off('click');
     switch(event.target.value) {
         case "steps":            
-            var steps_html = '<label>Steps to Reproduce</label><p class="help-text" id="steps-help">Write each step others would have to follow to reproduce the bug. Note: Dashes will be added automatically for each step. To add/remove fields, you can use the buttons below</p><div class="callout mbox" id="steps-fs"><div class="button-group small"><button type="button" class="button" id="add-btn"><i class="fas fa-plus"></i> Add</button><button type="button" class="button" id="del-btn"><i class="fas fa-minus"></i> Remove</button></div><div class="input-group" id="s1-grp"><span class="input-group-label">Step 1</span><input type="text" class="input-group-field" id="s1-field" required></div></div>';
+            var steps_html = '<label>Шаги для воспроизведения</label><p class="help-text" id="steps-help">Напишите каждый шаг, за которым должны следовать другие, чтобы воспроизвести ошибку. Примечание: дефисы будут добавлены автоматически для каждого шага. Чтобы добавить/удалить поля, вы можете использовать кнопки ниже</p><div class="callout mbox" id="steps-fs"><div class="button-group small"><button type="button" class="button" id="add-btn"><i class="fas fa-plus"></i> Добавить</button><button type="button" class="button" id="del-btn"><i class="fas fa-minus"></i> Удалить</button></div><div class="input-group" id="s1-grp"><span class="input-group-label">Шаг 1</span><input type="text" class="input-group-field" id="s1-field" required></div></div>';
             $('#edit-field').html(steps_html);
             $('#add-btn').on('click', addStep);
             $('#del-btn').on('click', {edit: true}, removeStep);
